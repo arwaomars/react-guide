@@ -1,0 +1,13 @@
+.challenge-title {
+  background-color: #007a78;
+  color: aliceblue;
+  font-size: 30px;
+  font-weight: bold;
+  height: 200px;
+  width: 100%;
+  display: flex;
+  justify-content: center; /* يوسط الكلام أفقياً (يمين ويسار) */
+  align-items: center; /* يوسط الكلام عمودياً (فوق وتحت) */
+  box-shadow: 0px 5px 13px rgba(0, 0, 0, 0.4);
+  direction: rtl;
+}

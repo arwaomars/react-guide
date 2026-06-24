@@ -1,0 +1,12 @@
+.button {
+  background-color: #700070;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  color: aliceblue;
+  box-shadow: 0px 5px 7px rgba(0, 0, 0, 0.3);
+  border: none;
+}
+.button:hover {
+  background-color: #4a004a;
+}
