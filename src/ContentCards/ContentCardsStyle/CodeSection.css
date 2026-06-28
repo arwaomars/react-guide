@@ -1,0 +1,37 @@
+.code-block-wrapper {
+  background: #1e1e1e;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 15px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+.code-block-header {
+  background: #2d2d2d;
+  color: #bcbcbc;
+  padding: 8px 15px;
+  font-size: 12px;
+  font-family: monospace;
+  border-bottom: 1px solid #3c3c3c;
+  text-align: right;
+  direction: rtl;
+}
+.code-block-wrapper pre,
+.code-block-single {
+  margin: 0;
+  padding: 15px;
+  direction: ltr;
+  text-align: left;
+  overflow-x: auto;
+  background: #1e1e1e;
+  border-radius: 6px;
+}
+.code-block-single {
+  margin-top: 8px;
+  border: 1px solid #2d2d2d;
+}
+.code-block-wrapper code,
+.code-block-single code {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 14px;
+  color: #d4d4d4;
+}

@@ -5,6 +5,7 @@
   background-color: #fff;
   box-shadow: 0px 5px 7px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
+  margin-bottom: 15px;
 }
 
 .cardTitle {
@@ -31,4 +32,16 @@
 .cardBody {
   color: #666; /* جعل نص المحتوى رمادي وخفيف مثل الصورة */
   font-size: 14px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  direction: rtl;
+  text-align: right;
+  max-width: 850px;
+  margin: 20px auto;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  color: #334155;
+  line-height: 1.7;
 }

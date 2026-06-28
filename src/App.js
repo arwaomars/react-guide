@@ -1,7 +1,7 @@
 import "./App.css";
 import Header from "./header";
-import Cards from "./cards";
 import Button from "./button";
+import GetCards from "./GetCards";
 
 function App() {
   return (
@@ -9,182 +9,15 @@ function App() {
       <Header />
       <div className="main-content">
         <div className="cardsSide">
-          <Cards
-            title=" إنشاء وإعادة استخدام المكونات (Components) في React
-"
-          >
-            {contentCard1()}
-          </Cards>
-
-          <Cards title="طرق   التنسيق (Styling) في React">
-            {contentCard2()}
-          </Cards>
-
-          <Cards
-            title="  تمرير البيانات واستخدام الـ Props في React
-"
-          >
-            {contentCard3()}
-          </Cards>
+          <GetCards />
         </div>
         <div className="rightSide">
           <Button />
           <Button />
           <Button />
           <Button />
-          <Button />
-          <Button />
-          <Button />
-          <Button />
-          <Button />
-          <Button />
-          <Button />
         </div>
       </div>
-    </div>
-  );
-}
-
-function contentCard1() {
-  return (
-    <div className="react-guide-container">
-      <header className="guide-header">
-        <blockquote className="guide-quote">
-          <strong>الهدف الأساسي:</strong> كتابة الكود{" "}
-          <strong>مرة واحدة فقط</strong>، وإعادة استخدامه في أي مكان داخل
-          المشروع لمنع التكرار وتسهيل الصيانة.
-        </blockquote>
-      </header>
-
-      <hr className="guide-divider" />
-
-      <main className="guide-content">
-        <section className="guide-section">
-          <h2 className="guide-section-title">
-            🛠️ المرحلة الأولى: إنشاء المكون (Creation)
-          </h2>
-
-          <ol className="guide-steps">
-            <li>
-              <strong>إنشاء الملف:</strong>
-              <p>
-                نُنشئ ملف جافاسكريبت مستقل للمكون. يبدأ اسم الملف دائماً بـ{" "}
-                <span className="highlight-text">حرف كبير (PascalCase)</span>.
-              </p>
-              <span className="file-badge">مثال: ExternalFile.jsx</span>
-            </li>
-
-            <li>
-              <strong>كتابة الدالة والتصدير (Export):</strong>
-              <p>
-                نكتب دالة تحمل نفس اسم الملف (تبدأ بحرف كبير)، ونضع قبلها عبارة
-                التصدير:
-              </p>
-              <code className="code-inline">export default function</code>
-            </li>
-
-            <li>
-              <strong>إرجاع واجهة المستخدم (Return JSX):</strong>
-              <p>
-                نستخدم أمر <code class="code-inline">return ( )</code> وبداخله
-                نكتب عناصر الـ HTML (الـ JSX).
-              </p>
-            </li>
-          </ol>
-
-          {/* البلوك الأول: تم استخدام الـ Backticks والـ Pre لضمان المحاذاة والأسطر */}
-          <div className="code-block-wrapper">
-            <div className="code-block-header">
-              ملف المكون: ExternalFile.jsx
-            </div>
-            <pre dir="ltr">
-              <code>
-                {`export default function ExternalFile() {
-  return (
-    <div className="component-box">
-      <h2>هذا مكون خارجي معاد استخدامه!</h2>
-    </div>
-  );
-}`}
-              </code>
-            </pre>
-          </div>
-        </section>
-
-        <section className="guide-section">
-          <h2 className="guide-section-title">
-            🚀 المرحلة الثانية: استدعاء واستخدام المكون (Import & Use)
-          </h2>
-
-          <ol className="guide-steps" start={4}>
-            <li>
-              <strong>الاستيراد (Import):</strong>
-              <p>
-                في أعلى الملف المراد العرض فيه، نستدعي المكون بالإشارة إلى
-                مساره:
-              </p>
-              <pre className="code-block-single" dir="ltr">
-                <code>{`import ExternalFile from "./ExternalFile";`}</code>
-              </pre>
-            </li>
-
-            <li>
-              <strong>الاستخدام داخل الـ JSX:</strong>
-              <p>
-                نكتب اسم المكون كأنه وسم HTML{" "}
-                <span className="highlight-text">ذاتي الإغلاق</span>:
-              </p>
-              <pre className="code-block-single" dir="ltr">
-                <code>{`<ExternalFile />`}</code>
-              </pre>
-            </li>
-          </ol>
-
-          {/* البلوك الثاني: مرتب في أسطر منفصلة وواضحة */}
-          <div className="code-block-wrapper">
-            <div className="code-block-header">ملف العرض الرئيسي: App.jsx</div>
-            <pre dir="ltr">
-              <code>
-                {`import ExternalFile from "./ExternalFile"; // 1. الاستيراد
-
-function App() {
-  return (
-    <div>
-      <h1>الصفحة الرئيسية</h1>
-      
-      {/* 2. الاستخدام وإعادة الاستخدام بكل سهولة */}
-      <ExternalFile />
-      <ExternalFile />
-    </div>
-  );
-}
-
-export default App;`}
-              </code>
-            </pre>
-          </div>
-        </section>
-      </main>
-
-      <footer className="guide-footer">
-        <div className="reminder-card">
-          <h3>💡الخلاصة :</h3>
-          <ul>
-            <li>
-              <strong>Capitalize:</strong> الاسم يبدأ دائماً بحرف كبير (للملف
-              والدالة).
-            </li>
-            <li>
-              <strong>Export:</strong> صدّر الدالة بـ{" "}
-              <code>export default</code>.
-            </li>
-            <li>
-              <strong>Import:</strong> استوردها في الأعلى واكتبها كـ وسم{" "}
-              <code>&lt;Component /&gt;</code>.
-            </li>
-          </ul>
-        </div>
-      </footer>
     </div>
   );
 }
@@ -483,4 +316,5 @@ export default function CourseCard({ title, children }) {
     </div>
   );
 }
+
 export default App;
