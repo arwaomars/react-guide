@@ -351,6 +351,110 @@ export default function CourseCard({ title, price }) {
       "أفضل ممارسة للـ key: استخدام معرف فريد وثابت من البيانات نفسها (مثل id) وتجنب استخدام الـ index إذا كانت القائمة قابلة للحذف أو إعادة الترتيب.",
     ],
   },
+  {
+    id: 4,
+    title: "إدارة حالة المكونات باستخدام الـ useState Hook",
+    introduction:
+      "الهدف الأساسي: تخزين البيانات المتغيرة داخل المكون (مثل: العداد، إظهار/إخفاء القوائم، مدخلات المستخدم)، وتحديث واجهة المستخدم (Re-render) تلقائياً بمجرد تغير هذه البيانات.",
+    sections: [
+      {
+        id: "sec1",
+        heading:
+          "🛠️ المرحلة الأولى: الاستيراد والتعريف (Import & Initialization)",
+        steps: [
+          {
+            id: "4-sec1-step1",
+            step: "الاستيراد (Import): يجب استدعاء الـ Hook في أعلى الملف من مكتبة ريأكت بالشكل التالي: import { useState } from 'react';",
+          },
+          {
+            id: "4-sec1-step2",
+            step: "تفكيك المصفوفة (Destructuring): نُعرف الـ useState داخل الدالة، وتُرجع لنا قيمتين: الأولى هي المتغير الذي يحمل القيمة الحالية، والثانية هي الدالة المسؤولة عن تحديث هذه القيمة.",
+          },
+          {
+            id: "4-sec1-step3",
+            step: "القيمة الابتدائية (Initial Value): نضع القيمة الأساسية التي يبدأ بها التطبيق بين القوسين ( ) للـ useState، مثل: false أو 0 أو نص فارغ.",
+          },
+        ],
+        codes: {
+          code1: {
+            id: "4-sec1-code1",
+            codeHeader: "طريقة كتابة التعريف والتعامل مع الحالة",
+            code: `import { useState } from "react"; // 1. استيراد الـ Hook
+
+export default function ToggleExample() {
+  // 2. التعريف: show هي القيمة الحالية، و setShow هي دالة التحديث
+  // 3. القيمة الابتدائية هنا هي false (مخفي)
+  const [show, setShow] = useState(false); 
+
+  return (
+    <div className="box">
+      <p>الحالة الحالية هي: {show ? "ظاهر" : "مخفي"}</p>
+    </div>
+  );
+}`,
+          },
+        },
+      },
+      {
+        id: "sec2",
+        heading:
+          "🚀 المرحلة الثانية: التحديث وعرض التغيير (Updating State & Conditional Rendering)",
+        steps: [
+          {
+            id: "4-sec2-step1",
+            step: "ربط الدالة بحدث (Event Handler): نربط زر الماوس بحدث الضغط onClick، ونمرر له دالة تقوم باستدعاء دالة التحديث (مثل setShow) لتقوم بتغيير القيمة.",
+          },
+          {
+            id: "4-sec2-step2",
+            step: "قلب الحالة (Toggling): عند الرغبة في عمل زر يفتح ويغلق، نمرر عكس القيمة الحالية باستخدام علامة التعجب بالشكل التالي: setShow(!show).",
+          },
+          {
+            id: "4-sec2-step3",
+            step: "العرض المشروط (Conditional Rendering): نستخدم معامل الربط المنطقي && لكي نقول للـ JSX: 'إذا كانت الحالة true، قم بعرض هذا العنصر، وإذا كانت false اخفهِ'.",
+          },
+        ],
+        codes: {
+          code1: {
+            id: "4-sec2-code1",
+            codeHeader: "المكون الكامل: تطبيق الإظهار والإخفاء التفاعلي",
+            code: `import { useState } from "react";
+
+export default function CounterCard() {
+  const [show, setShow] = useState(false);
+
+  // دالة لتغيير الحالة عند الضغط
+  const handleToggle = () => {
+    setShow(!show); // تقلب الـ true إلى false والعكس
+  };
+
+  return (
+    <div className="card-container">
+      <h2>عنوان الكارد المتفاعل</h2>
+      
+      {/* ربط زر التبديل بحدث الضغط */}
+      <button onClick={handleToggle}>
+        {show ? "إخفاء التفاصيل ⬆️" : "إظهار التفاصيل ⬇️"}
+      </button>
+
+      {/* لن يظهر هذا الـ div إلا إذا كانت قيمة show تساوي true */}
+      {show && (
+        <div className="card-body">
+          <p>مرحباً! هذا هو محتوى الجسم الذي يظهر ويختفي ديناميكياً باستخدام useState.</p>
+        </div>
+      )}
+    </div>
+  );
+}`,
+          },
+        },
+      },
+    ],
+    summaryPoints: [
+      "useState: هي أداة لحفظ البيانات المتغيرة داخل المكون والتي يتسبب تغيرها في إعادة بناء الواجهة (Re-render).",
+      "Array Destructuring: السطر const [state, setState] = useState(init) هو الطريقة القياسية لتعريفها.",
+      "Never Mutate Directly: لا تقم بتغيير قيمة المتغير مباشرة مثل state = true، بل استخدم دائماً دالة التحديث setState(true).",
+    ],
+  },
 ];
 
 export default ContentCardList;
