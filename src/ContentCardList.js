@@ -352,7 +352,7 @@ export default function CourseCard({ title, price }) {
     ],
   },
   {
-    id: 4,
+    id: 5,
     title: "إدارة حالة المكونات باستخدام الـ useState Hook",
     introduction:
       "الهدف الأساسي: تخزين البيانات المتغيرة داخل المكون (مثل: العداد، إظهار/إخفاء القوائم، مدخلات المستخدم)، وتحديث واجهة المستخدم (Re-render) تلقائياً بمجرد تغير هذه البيانات.",
@@ -453,6 +453,89 @@ export default function CounterCard() {
       "useState: هي أداة لحفظ البيانات المتغيرة داخل المكون والتي يتسبب تغيرها في إعادة بناء الواجهة (Re-render).",
       "Array Destructuring: السطر const [state, setState] = useState(init) هو الطريقة القياسية لتعريفها.",
       "Never Mutate Directly: لا تقم بتغيير قيمة المتغير مباشرة مثل state = true، بل استخدم دائماً دالة التحديث setState(true).",
+    ],
+  },
+  {
+    id: 6,
+    title: "التعامل مع الاستمارات (Forms) والمدخلات",
+    introduction:
+      "الهدف الأساسي: ربط حقول الإدخال بحالة المكون (State) (Controlled Components)، بحيث يتم تحديث الـ State مع كل نقرة أو كتابة.",
+    sections: [
+      {
+        id: "6-sec1",
+        heading: "📱 مثال حي",
+        componentName: "Form",
+        steps: [
+          {
+            id: "5-sec1-step1",
+            step: "جرب بنفسك: قم بتعبئة النموذج أدناه واختيار التقنيات...",
+          },
+        ],
+        codes: {},
+      }, // 🛠️ هنا كان القفل الخاطئ المسبب للايرور وتم إصلاحه
+      {
+        id: "6-sec2",
+        heading: "🏗️ تهيئة الـ State وإدارة حقل النص (Text Input)",
+        steps: [
+          {
+            id: "6-sec2-step1",
+            step: "ربط القيمة والتحديث: نربط خاصية *value* الخاصة بالـ input بمتغير من الـ State ليعرضها دائماً. ثم نستخدم حدث *onChange* لتحديث الـ State فوراً عند كتابة أي حرف باستخدام الكود الدلالي *{ ...formInputs, name: event.target.value }* للحفاظ على بقية قيم الحقول دون حذف.",
+          },
+        ],
+        codes: {
+          code1: {
+            id: "6-sec2-code1",
+            codeHeader: "مكون حقل النص: FormInput.jsx",
+            code: `import { useState } from "react";
+
+export default function Form() {
+  const [formInputs, setFormInput] = useState({ name: "" });
+
+  return (
+    <form onSubmit={(event) => event.preventDefault()}>
+      <input
+        type="text"
+        value={formInputs.name} // ربط القيمة بالـ State
+        onChange={(event) => {
+          // الحفاظ على الأوبجكت وتحديث حقل الاسم فقط
+          setFormInput({ ...formInputs, name: event.target.value });
+        }}
+      />الاسم
+    </form>
+  );
+}`,
+          },
+        },
+      },
+      {
+        id: "6-sec3",
+        heading: "🛑 معالجة إرسال البيانات (Form Submission)",
+        steps: [
+          {
+            id: "6-sec3-step1",
+            step: "إلغاء التحديث التلقائي: عند الضغط على زر الإرسال، يقوم المتصفح تلقائياً بإعادة تحميل الصفحة (Reload). لمنع هذا السلوك واستلام البيانات برمجياً، نستدعي الدالة الشهيرة *event.preventDefault()* داخل حدث الـ *onSubmit* الخاص بالفورم نفسه.",
+          },
+        ],
+        codes: {
+          code1: {
+            id: "6-sec23-code1",
+            codeHeader: "التحكم بحدث الإرسال: FormSubmit.jsx",
+            code: `// داخل وسم الـ <form> الرئيسي
+<form
+  onSubmit={(event) => {
+    event.preventDefault(); // منع إعادة تحميل الصفحة الافتراضية
+  }}
+>
+  {/* محتوى الفورم وأزرار الإرسال */}
+</form>`,
+          },
+        },
+      },
+    ], // إغلاق مصفوفة الـ sections بشكل سليم
+    summaryPoints: [
+      "Controlled Component: تعني أن قيمة الحقل (value) تأتي دائماً من الـ State وتتحدث عبر الـ onChange.",
+      "قاعدة الـ Spread Operator (...): مهمة جداً عند التعامل مع Object في الـ State لتجنب مسح باقي بيانات الحقول الأخرى أثناء تحديث حقل واحد.",
+      "event.preventDefault(): دالة لا غنى عنها لمنع المتصفح من إعادة تحميل الصفحة عند إرسال الـ Form.",
     ],
   },
 ];

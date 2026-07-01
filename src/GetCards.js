@@ -9,6 +9,17 @@ import StepsSection from "./ContentCards/StepsSection";
 import CodeSection from "./ContentCards/CodeSection";
 import SummarySection from "./ContentCards/SummarySection";
 
+// =========================================================
+// استيراد المكونات الحية التفاعلية هنا
+import Form from "./Form";
+
+// =========================================================
+// التعديل الثاني: قاموس المكونات التفاعلية (Registry)
+// نربط الكلمة النصية القادمة من اللستة بالمكون الفعلي
+const interactiveComponentsRegistry = {
+  Form: <Form />,
+};
+
 export default function GetCards() {
   // دالة مساعدة لمعالجة الـ Introduction سواء كان نصاً عادياً أو كائناً (Object)
   const renderIntroText = (intro) => {
@@ -42,12 +53,12 @@ export default function GetCards() {
               Sections={
                 <div className="sections-wrapper">
                   {cardData.sections.map((sec) => {
-                    // تحويل كائن الكود (codes object) إلى مصفوفة ليسهل عمل الخريطة (.map) عليها
+                    // تحويل الكود إلى مصفوفة ليسهل عمل فانكشن ماب عليها
                     const codesArray = sec.codes
                       ? Object.values(sec.codes)
                       : [];
 
-                    // استخراج مصفوفة الخطوات فقط من كائنات الخطوات (steps objects) لـ StepsSection
+                    // استخراج مصفوفة الخطوات فقط من اوبجكت الستيب لـ StepsSection
                     const stepsList = sec.steps
                       ? sec.steps.map((s) => s.step)
                       : [];
@@ -69,6 +80,13 @@ export default function GetCards() {
                               ))}
                             </div>
                           )
+                        }
+                        // مرير المكون التفاعلي إلى السكشن بشكل ديناميكي
+                        // يبحث في القاموس بأعلى الملف عن الاسم المكتوب في اللستة (sec.componentName)
+                        //
+                        interactiveComponent={
+                          interactiveComponentsRegistry[sec.componentName] ||
+                          null
                         }
                       />
                     );
